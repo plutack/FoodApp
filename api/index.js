@@ -17,11 +17,16 @@ app.use((req, res, next) => {
 
 app.get("/api/meals", async (req, res) => {
   // try-catch block is probably better here
+  try {
   const meals = await fs.readFile(
     "./data/available-meals.json",
     "utf8"
   );
-  res.json(JSON.parse(meals));
+  res.json(JSON.parse(meals));}
+  catch(err){
+    console.log(`server error: ${err}. present working directory: ${process.cwd}`)
+  }
+  res.send(`${process.cwd}`)
 });
 
 app.post("/api/orders", async (req, res) => {
