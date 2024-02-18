@@ -19,7 +19,7 @@ app.use((req, res, next) => {
 
 app.get("/api/meals", async (req, res) => {
   // try-catch block is probably better here
-  const mealsFilePath = join(fileURLToPath(dirname(import.meta.url)), 'data/available-meals.json')
+  const mealsFilePath = join(fileURLToPath(dirname(import.meta.url)), 'files/data/available-meals.json')
   try {
   const meals = await fs.readFile(
     mealsFilePath,
