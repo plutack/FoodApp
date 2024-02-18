@@ -16,8 +16,9 @@ app.use((req, res, next) => {
 });
 
 app.get("/api/meals", async (req, res) => {
+  // try-catch block is probably better here
   const meals = await fs.readFile(
-    "./api/data/available-meals.json",
+    "./data/available-meals.json",
     "utf8"
   );
   res.json(JSON.parse(meals));
