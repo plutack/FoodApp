@@ -27,8 +27,8 @@ app.get("/api/meals", async (req, res) => {
   );
   res.json(JSON.parse(meals));}
   catch(err){
-    console.log(`server error: ${err}. present working directory: ${fileURLToPath(import.meta.url)}`)
-  res.send(`${fileURLToPath(import.meta.url)}`)}
+    console.log(`server error: ${err}. present working directory: ${process.cwd()}`)
+  res.send(`${process.cwd()}`)}
 });
 
 app.post("/api/orders", async (req, res) => {
