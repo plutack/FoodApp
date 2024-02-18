@@ -1,4 +1,5 @@
 import fs from "node:fs/promises";
+import { fileURLToPath } from "node:url";
 
 import bodyParser from "body-parser";
 import express from "express";
@@ -24,9 +25,9 @@ app.get("/api/meals", async (req, res) => {
   );
   res.json(JSON.parse(meals));}
   catch(err){
-    console.log(`server error: ${err}. present working directory: ${process.cwd}`)
+    console.log(`server error: ${err}. present working directory: ${fileURLToPath(import.meta.url)}`)
   }
-  res.send(`${process.cwd}`)
+  res.send(`${fileURLToPath(import.meta.url)}`)
 });
 
 app.post("/api/orders", async (req, res) => {
