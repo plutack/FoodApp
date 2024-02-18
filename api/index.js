@@ -4,7 +4,7 @@ import bodyParser from "body-parser";
 import express from "express";
 
 const app = express();
-app.set("port", process.env.PORT || 3000);
+// app.set("port", process.env.PORT || 3000);
 app.use(bodyParser.json());
 app.use(express.static("public"));
 
