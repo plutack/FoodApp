@@ -1,8 +1,9 @@
 import fs from "node:fs/promises";
-import { fileURLToPath } from "node:url";
+import { fileURLToPath } from "node:url";0
 
 import bodyParser from "body-parser";
 import express from "express";
+import { dirname, join } from "node:path";
 
 const app = express();
 app.set("port", process.env.PORT || 3000);
@@ -18,16 +19,16 @@ app.use((req, res, next) => {
 
 app.get("/api/meals", async (req, res) => {
   // try-catch block is probably better here
+  const mealsFilePath = join(fileURLToPath(dirname(import.meta.url)), 'data/available-meals.json')
   try {
   const meals = await fs.readFile(
-    "data/available-meals.json",
+    mealsFilePath,
     "utf8"
   );
   res.json(JSON.parse(meals));}
   catch(err){
     console.log(`server error: ${err}. present working directory: ${fileURLToPath(import.meta.url)}`)
-  }
-  res.send(`${fileURLToPath(import.meta.url)}`)
+  res.send(`${fileURLToPath(import.meta.url)}`)}
 });
 
 app.post("/api/orders", async (req, res) => {
